@@ -13,6 +13,9 @@ const ENTRY =
 if (ENTRY.length > 280) {
   throw new Error(`Entry is ${ENTRY.length} characters, over the 280 limit.`);
 }
+if (ENTRY.includes("\n")) {
+  throw new Error("Entry must be a single line.");
+}
 
 mkdirSync("/output", { recursive: true });
 writeFileSync("/output/entry.txt", ENTRY, "utf8");
